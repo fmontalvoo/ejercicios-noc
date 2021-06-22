@@ -8,5 +8,6 @@ void setup() {
 
 void draw() {
   c.mostrar();
-  c.caminar();
+  c.camina();
+  //c.caminar();
 }

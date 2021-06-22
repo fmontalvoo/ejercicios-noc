@@ -39,4 +39,23 @@ class Caminante {
     x = constrain(x, 0, width-1);
     y = constrain(y, 0, height-1);
   }
+
+  void camina() {
+
+    float p = random(1);
+
+    if (p < 0.30) {
+      println("Up: " + p);
+      this.y -= this.dy;
+    } else if (p < 0.40) {
+      println("Right: " + p);
+      this.x += this.dx;
+    } else if (p < 0.60) {
+      println("Down: " + p);
+      this.y += this.dy;
+    } else {
+      println("Left: " + p);
+      this.x -= this.dx;
+    }
+  }
 }
