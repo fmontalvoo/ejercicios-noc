@@ -2,7 +2,9 @@ class Circulo {
 
   private float radio;
   private float diametro;
-  
+  private boolean drawLine;
+  private boolean moveRandom;
+
   private PVector ubicacion;
   private PVector velocidad;
   private PVector aceleracion;
@@ -16,6 +18,18 @@ class Circulo {
     this.aceleracion = new PVector(0, 0);
   }
 
+  Circulo(float r, float x, float y, float vx, float vy, boolean drawLine, boolean moveRandom) {
+    this.radio = r;
+    this.diametro = 2 * r;
+
+    this.drawLine = drawLine;
+    this.moveRandom = moveRandom;
+
+    this.ubicacion = new PVector(x, y);
+    this.velocidad = new PVector(vx, vy);
+    this.aceleracion = new PVector(0, 0);
+  }
+
   void dibujar() {
     fill(255);
     stroke(0);
@@ -23,16 +37,29 @@ class Circulo {
     ellipse(this.ubicacion.x, this.ubicacion.y, this.diametro, this.diametro);
   }
 
-  void mover(){
+  void mover() {
     this.ubicacion.add(this.velocidad);
   }
 
   void actualizar() {
-    this.aceleracion = PVector.random2D();
-    
+    PVector mouse = new PVector(mouseX, mouseY);
+
+    mouse.sub(this.ubicacion);
+    mouse.setMag(0.5);
+
+    if (this.moveRandom)
+      this.aceleracion = PVector.random2D();
+    else
+      this.aceleracion = mouse;
+
+
+    if (this.drawLine) {
+      line(this.ubicacion.x, this.ubicacion.y, mouseX, mouseY);
+      ellipse(mouseX, mouseY, 7, 7);
+    }
     this.velocidad.add(this.aceleracion);
     this.ubicacion.add(this.velocidad);
-    
+
     this.velocidad.limit(5);
   }
 
