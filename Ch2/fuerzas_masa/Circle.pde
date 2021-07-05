@@ -20,8 +20,10 @@ public class Circle {
 
   //2da ley de Newton
   public void applyForce(PVector force) {
-    PVector f = PVector.div(force, this.mass);
-    this.acceleration.add(f);
+    // F = M * A
+    // A = F / M
+    PVector a = PVector.div(force, this.mass);
+    this.acceleration.add(a);
   }
 
   public void update() {
