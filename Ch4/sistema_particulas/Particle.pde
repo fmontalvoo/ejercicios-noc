@@ -9,11 +9,11 @@ class Particle {
   Particle(PVector location) {
     this.acceleration = new PVector(0, 0.05);
     this.velocity = new PVector(random(-1, 1), random(-1, 1));
-    this.location = location;
+    this.location = location.copy();
   }
 
   boolean isAlive() {
-    if (this.lifespan <= 0)
+    if (this.location.y >= height-7)
       return false;
     return true;
   }
