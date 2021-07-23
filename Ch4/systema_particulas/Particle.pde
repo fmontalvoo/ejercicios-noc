@@ -3,7 +3,7 @@ class Particle {
   PVector location;
   PVector velocity;
   PVector acceleration;
-  
+
   float lifespan = 255;
 
   Particle(PVector location) {
@@ -12,9 +12,15 @@ class Particle {
     this.location = location;
   }
 
+  boolean isAlive() {
+    if (this.lifespan <= 0)
+      return false;
+    return true;
+  }
+
   void update() {
-    this.lifespan -= 1;
-    
+    this.lifespan -= 2;
+
     this.velocity.add(this.acceleration);
     this.location.add(this.velocity);
   }
