@@ -5,12 +5,9 @@ class ParticleSystem {
   PVector origin;
   ParticleSystem(PVector origin) {
     this.origin = origin.copy();
-
-    particles = new ArrayList<Particle>();
-    for (int i = 0; i < 5; i++) {
-      particles.add(new Particle(origin));
-    }
+    this.particles = new ArrayList<Particle>();
   }
+
   void display() {
     for (int i = particles.size()-1; i >= 0; i--) {
       Particle p = particles.get(i);
@@ -20,10 +17,9 @@ class ParticleSystem {
       if (!p.isAlive() || particles.size() > 70)
         particles.remove(i);
     }
-
   }
 
   void update() {
-    particles.add(new Particle(origin));
+      particles.add(new TriangleParticle(origin));
+    }
   }
-}

@@ -8,8 +8,8 @@ void setup() {
 void draw() {
   background(255);
   for (ParticleSystem ps : systems) {
-    ps.display();
     ps.update();
+    ps.display();
   }
 }
 
